@@ -1,33 +1,48 @@
-<button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-  <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
-    <mask class="moon" id="moon-mask">
-      <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
-      <circle cx="24" cy="10" r="6" fill="black"></circle>
+<button id='theme-toggle' class='theme-toggle fixed bottom-6 right-6' aria-label='Toggle theme'>
+  <svg class='sun-and-moon' aria-hidden='true' width='24' height='24' viewBox='0 0 24 24'>
+    <mask class='moon' id='moon-mask'>
+      <rect x='0' y='0' width='100%' height='100%' fill='white'></rect>
+      <circle cx='24' cy='10' r='6' fill='black'></circle>
     </mask>
-    <circle class="sun" cx="12" cy="12" r="6" fill="currentColor" mask="url(#moon-mask)"></circle>
-    <g class="sun-beams" stroke="currentColor">
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    <circle class='sun' cx='12' cy='12' r='6' fill='currentColor' mask='url(#moon-mask)'></circle>
+    <g class='sun-beams' stroke='currentColor'>
+      <line x1='12' y1='1' x2='12' y2='3'></line>
+      <line x1='12' y1='21' x2='12' y2='23'></line>
+      <line x1='4.22' y1='4.22' x2='5.64' y2='5.64'></line>
+      <line x1='18.36' y1='18.36' x2='19.78' y2='19.78'></line>
+      <line x1='1' y1='12' x2='3' y2='12'></line>
+      <line x1='21' y1='12' x2='23' y2='12'></line>
+      <line x1='4.22' y1='19.78' x2='5.64' y2='18.36'></line>
+      <line x1='18.36' y1='5.64' x2='19.78' y2='4.22'></line>
     </g>
   </svg>
 </button>
 
 <style is:global>
   .theme-toggle {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--theme-text);
     padding: 0;
+    animation: fadeOut 1s forwards;
+    animation-delay: 2s;
+  }
+
+  .theme-toggle:hover,
+  .theme-toggle:active {
+    animation: none;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 
   .sun-and-moon > :is(.moon, .sun, .sun-beams, .moon-circle, .moon-crater) {
@@ -92,8 +107,8 @@
     const themeToggle = document.getElementById('theme-toggle');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     const giscusScript = document.getElementById('giscus-script');
-    const GISCUS_DARK_THEME = 'https://gw.alipayobjects.com/os/k/weekly3/comment-dark.css';
-    const GISCUS_LIGHT_THEME = 'https://gw.alipayobjects.com/os/k/weekly3/comment.css';
+    const GISCUS_DARK_THEME = 'https://gw.alipayobjects.com/os/k/dc/comment-dark.css';
+    const GISCUS_LIGHT_THEME = 'https://gw.alipayobjects.com/os/k/hg/comment.css';
 
     const updateIframeTheme = (newTheme) => {
       const iframe = document.querySelector('iframe.giscus-frame');
